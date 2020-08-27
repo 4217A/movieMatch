@@ -1,0 +1,41 @@
+body {
+    display: flex;
+    font-family: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    justify-content: center;
+    max-width: 50%;
+    margin: auto;
+}
+
+button {
+    display: block; /*A to center button*/
+    font-family: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    font-size: 1.5em;
+    margin: 2em auto; /*A to center button*/
+    padding: 0.3em;
+    width: 8em;
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+.movie-selected {
+    background-color: red;
+    color: white;
+}
+
+hr {
+    margin: 1em auto; /*A to center*/
+    width: 12em;
+}
+
+input {
+    display: block;
+    line-height: 2em;
+    margin: 4em auto; /*A to center*/
+    text-align: center;
+}
