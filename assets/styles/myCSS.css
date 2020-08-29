@@ -39,6 +39,10 @@ button:hover {
     background-image: linear-gradient(to right, #727a9a 0%, #b0b8db 100%);    
 }
 
+button.login {
+    margin: 1em auto;
+}
+
 h1 {
     font-weight: 200;
     text-align: center;
@@ -55,6 +59,10 @@ h1.title {
     color: #930dd4;
     font-weight: 200;
     text-align: center;
+}
+
+h1.login {
+    margin-bottom: 0;
 }
 
 h2 {
