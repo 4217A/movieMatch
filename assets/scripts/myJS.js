@@ -12,8 +12,9 @@ class HomePage {
         renderHook.innerHTML = '';
         //add html
         renderHook.innerHTML = `
-        <h1 class="title">MOVIE MATCH</h1>
-        <button>Login</button>
+        <h1 class="title login">MOVIE MATCH</h1>
+        <img src="assets/img/logo.png" alt="movie match logo" style="width: 200px; height: 200px"/>
+        <button class="login">Login</button>
         <button>New User</button>
         `;
         //listen for buttons
