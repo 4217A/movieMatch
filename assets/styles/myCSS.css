@@ -1,0 +1,82 @@
+/*
+pri color: #930dd4
+mid color: #007cba
+sec color: #80c1ff
+button text color: #ffffff
+
+back button: #727a9a , #b0b8db
+*/
+
+body {
+    color: #5d647c;
+    display: flex;
+    font-family: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    justify-content: center;
+    max-width: 50%;
+    margin: auto;
+}
+
+button {
+    background-image: linear-gradient(to right, #930dd4 0%, #80c1ff 100%);
+    border: 0;
+    border-radius: 2em;
+    color: #ffffff;
+    outline: none;
+    
+    display: block; /*A to center button*/
+    font-family: Calibri, 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    font-size: 1.5em;
+    margin: 2em auto; /*A to center button*/
+    padding: 0.3em;
+    width: 8em;
+}
+
+button:hover {
+    background-image: linear-gradient(to right, #80c1ff 0%, #80c1ff 100%);
+}
+
+.back {
+    background-image: linear-gradient(to right, #727a9a 0%, #b0b8db 100%);    
+}
+
+h1 {
+    font-weight: 200;
+    text-align: center;
+}
+
+h1.title {
+    background-color: #ffffff; /*fallback*/
+    background-image: linear-gradient(to right, #930dd4 0%, #80c1ff 100%);
+    background-size: 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    color: #930dd4;
+    font-weight: 200;
+    text-align: center;
+}
+
+h2 {
+    font-weight: 200;
+    padding: 0.1em;
+    text-align: center;
+}
+
+.movie-selected {
+    background-image: linear-gradient(to right, #930dd4 0%, #80c1ff 100%);
+    border-radius: 0.2em;
+    color: white;
+}
+
+hr {
+    margin: 1em auto; /*A to center*/
+    width: 12em;
+}
+
+input {
+    display: block;
+    line-height: 2em;
+    margin: 4em auto; /*A to center*/
+    text-align: center;
+}
