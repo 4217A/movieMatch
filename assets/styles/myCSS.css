@@ -80,3 +80,9 @@ input {
     margin: 4em auto; /*A to center*/
     text-align: center;
 }
+
+@media (max-width: 576px) {
+    body {
+        max-width: 100%;
+    }
+}
