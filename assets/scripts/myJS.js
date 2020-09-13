@@ -54,8 +54,7 @@ class AddNewUserPage {
         renderHook.innerHTML = '';
         renderHook.innerHTML = `
         <h1 class="title">ADD NEW USER</h1>
-        <input type="text" placeholder="Enter User Name Here" id="name" name="name">
-        <button>Register</button>
+        <p>Under Construction</p>
         <hr>
         <button class="back">Back</button>
         `;
