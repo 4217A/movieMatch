@@ -1,5 +1,6 @@
 'use strict';
 //2020-08-19 start
+//2020-09-13 update
 
 //global renderHook
 const renderHook = document.getElementById('renderHook');
@@ -54,14 +55,13 @@ class AddNewUserPage {
         renderHook.innerHTML = '';
         renderHook.innerHTML = `
         <h1 class="title">ADD NEW USER</h1>
-        <p>Under Construction</p>
+        <h2>under construction</h2>
         <hr>
         <button class="back">Back</button>
         `;
         //add event listener for back button
         const newName = renderHook.querySelector('input');
-        renderHook.querySelectorAll('button')[0].addEventListener('click', userListOne.addNewUser.bind(this, newName));
-        renderHook.querySelectorAll('button')[1].addEventListener('click', myHomePage.render);
+        renderHook.querySelectorAll('button')[0].addEventListener('click', myHomePage.render);
     }
 }
 
