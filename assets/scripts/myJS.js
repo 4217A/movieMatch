@@ -1,6 +1,7 @@
 'use strict';
 //2020-08-19 start
 //2020-09-13 update
+//2020-09-14
 
 //global renderHook
 const renderHook = document.getElementById('renderHook');
@@ -10,37 +11,53 @@ class HomePage {
     
     render() {
         //erase html
-        renderHook.innerHTML = '';
+        renderHook.textContent = '';
         //add html
-        renderHook.innerHTML = `
-        <h1 class="title login">MOVIE MATCH</h1>
-        <img src="assets/img/logo.png" alt="movie match logo" style="width: 200px; height: 200px"/>
-        <button class="login">Login</button>
-        <button>New User</button>
-        `;
-        //listen for buttons
-        renderHook.querySelectorAll('button')[0].addEventListener('click', mySelectUserPage.render);
-        renderHook.querySelectorAll('button')[1].addEventListener('click', myAddNewUserPage.render);
+        var myEl = document.createElement("h1");
+        myEl.classList.add("title", "login");
+        myEl.textContent = "MOVIE MATCH";
+        renderHook.append(myEl);
+
+        myEl = document.createElement("img");
+        myEl.setAttribute("src", "assets/img/logo.png");
+        myEl.setAttribute("alt", "movie match logo");
+        myEl.setAttribute("style", "width: 200px; height: 200px");
+        renderHook.append(myEl);
+
+        myEl = document.createElement("button");
+        myEl.classList.add("login");
+        myEl.textContent = "Login";
+        renderHook.append(myEl);
+        renderHook.lastElementChild.addEventListener('click', mySelectUserPage.render);
+
+        myEl = document.createElement("button");
+        myEl.textContent = "New User";
+        renderHook.append(myEl);
+        renderHook.lastElementChild.addEventListener('click', myAddNewUserPage.render);
+        myEl = null; //clean
     }
 }
 
 class SelectUserPage {
 
     render() {
-        renderHook.innerHTML = '';
-        renderHook.innerHTML = `
-        <h1 class="title">SELECT USER</h1>
-        `;
+        renderHook.textContent = '';
+        //add html
+        var myEl = document.createElement("h1");
+        myEl.classList.add("title", "login");
+        myEl.textContent = "SELECT USER";
+        renderHook.append(myEl);
+
         //render user list
         for (const user in userListOne.list) {
-            renderHook.innerHTML += `
-            <button>${userListOne.list[user].name}</button>
-            `;
+            myEl = document.createElement("button");
+            myEl.textContent = userListOne.list[user].name;
+            renderHook.append(myEl);
         }
-        renderHook.innerHTML += `
-        <hr>
-        <button class="back">Back</button>
-        `;
+        myEl = document.createElement("button");
+        myEl.classList.add("back");
+        myEl.textContent = "Back";
+        renderHook.append(myEl);
         //listen for buttons
         for (const user in userListOne.list) {
             renderHook.querySelectorAll('button')[user].addEventListener('click', myUserMatchesPage.render.bind(this, user));
@@ -52,13 +69,25 @@ class SelectUserPage {
 class AddNewUserPage {
 
     render() {
-        renderHook.innerHTML = '';
-        renderHook.innerHTML = `
-        <h1 class="title">ADD NEW USER</h1>
-        <h2>under construction</h2>
-        <hr>
-        <button class="back">Back</button>
-        `;
+        renderHook.textContent = '';
+
+        var myEl = document.createElement("h1");
+        myEl.classList.add("title");
+        myEl.textContent = "ADD NEW USER";
+        renderHook.append(myEl);
+
+        myEl = document.createElement("h2");
+        myEl.textContent = "under construction";
+        renderHook.append(myEl);
+
+        myEl = document.createElement("hr");
+        renderHook.append(myEl);
+
+        myEl = document.createElement("button");
+        myEl.classList.add("back");
+        myEl.textContent = "Back";
+        renderHook.append(myEl);
+
         //add event listener for back button
         const newName = renderHook.querySelector('input');
         renderHook.querySelectorAll('button')[0].addEventListener('click', myHomePage.render);
@@ -68,31 +97,43 @@ class AddNewUserPage {
 class UserMatchesPage {
 
     render(user) {
-        renderHook.innerHTML = '';
-        renderHook.innerHTML = `
-        <h1 class="title">HELLO ${userListOne.list[user].name.toUpperCase()}</h1>
-        <button>Your Profile</button>
-        <hr>
-        <h1>YOUR MATCHES</h1>
-        `;
+        renderHook.textContent = '';
+
+        var myEl = document.createElement("h1");
+        myEl.classList.add("title");
+        myEl.textContent = "HELLO " + userListOne.list[user].name.toUpperCase();
+        renderHook.append(myEl);
+
+        myEl = document.createElement("button");
+        myEl.textContent = "Your Profile";
+        renderHook.append(myEl);
+
+        myEl = document.createElement("hr");
+        renderHook.append(myEl);
+
+        myEl = document.createElement("h1");
+        myEl.textContent = "YOUR MATCHES";
+        renderHook.append(myEl);
+
         userListOne.list[user].checkMatches();
+
         //print matches
         if (userListOne.list[user].matchedUsers.length === 0) {
-            renderHook.innerHTML += `
-            <h2>no matches yet - go to your profile and favorite movies</h2>
-            `;        
+            myEl = document.createElement("h2");
+            myEl.textContent = "no matches yet - go to your profile and favorite movies";
+            renderHook.append(myEl);
         } else {
             for (const match in userListOne.list[user].matchedUsers) {
-                renderHook.innerHTML += `
-                <button>${userListOne.list[userListOne.list[user].matchedUsers[match].id].name}</button>
-                `;
+                myEl = document.createElement("button");
+                myEl.textContent = userListOne.list[userListOne.list[user].matchedUsers[match].id].name;
+                renderHook.append(myEl);
             }    
         }
         
-        renderHook.innerHTML += `
-        <hr>
-        <button class="back">Log Out</button>
-        `;
+        myEl = document.createElement("button");
+        myEl.classList.add("back");
+        myEl.textContent = "Back";
+        renderHook.append(myEl);
 
         renderHook.querySelectorAll('button')[0].addEventListener('click', myYourProfilePage.render.bind(this, user));
         for (const match in userListOne.list[user].matchedUsers) {
@@ -105,26 +146,35 @@ class UserMatchesPage {
 class YourProfilePage {
 
     render(user) {
-        renderHook.innerHTML = '';
+        renderHook.textContent = '';
+
         userListOne.list[user].favoriteMovies.sort((a, b) => a -b );
-        renderHook.innerHTML = `
-        <h1 class="title">${userListOne.list[user].name.toUpperCase()}'S PROFILE</h1>
-        <hr>
-        <h1>FAVORITE MOVIES</h1>
-        `;
+
+        var myEl = document.createElement("h1");
+        myEl.classList.add("title");
+        myEl.textContent = "YOUR PROFILE";
+        renderHook.append(myEl);
+
         //print favorite movies
         for (const favorite in userListOne.list[user].favoriteMovies) {
-            renderHook.innerHTML += `
-            <h2>${movieListOne.list[userListOne.list[user].favoriteMovies[favorite]].title}</h2>
-            `;
+            myEl = document.createElement("h2");
+            myEl.textContent = movieListOne.list[userListOne.list[user].favoriteMovies[favorite]].title;
+            renderHook.append(myEl);
         }
 
-        renderHook.innerHTML += `
-        <button>Add Movie</button>
-        <button>Remove Movie</button>
-        <hr>
-        <button class="back">Back to Matches</button>
-        `;
+        myEl = document.createElement("button");
+        myEl.textContent = "Add Movie";
+        renderHook.append(myEl);
+
+        myEl = document.createElement("button");
+        myEl.textContent = "Remove Movie";
+        renderHook.append(myEl);
+
+        myEl = document.createElement("button");
+        myEl.classList.add("back");
+        myEl.textContent = "Back";
+        renderHook.append(myEl);
+
         renderHook.querySelectorAll('button')[0].addEventListener('click', myUserMovieListAddPage.render.bind(this, user));
         renderHook.querySelectorAll('button')[1].addEventListener('click', myUserMovieListRemovePage.render.bind(this, user));
         renderHook.querySelectorAll('button')[2].addEventListener('click', myUserMatchesPage.render.bind(this, user));
@@ -134,25 +184,42 @@ class YourProfilePage {
 class OtherProfilePage {
 
     render(user, match, matchedUser) {
-        renderHook.innerHTML = '';
-        renderHook.innerHTML = `
-        <h1 class="title">${userListOne.list[matchedUser].name.toUpperCase()}'S PROFILE</h1>
-        <hr>
-        <h1>OUR MOVIE MATCH</h1>
-        `;
+        renderHook.textContent = '';
+
+        var myEl = document.createElement("h1");
+        myEl.classList.add("title");
+        myEl.textContent = userListOne.list[matchedUser].name.toUpperCase() + " 'S PROFILE";
+        renderHook.append(myEl);
+
+        myEl = document.createElement("hr");
+        renderHook.append(myEl);
+
+        myEl = document.createElement("h1");
+        myEl.textContent = "OUR MOVIE MATCH";
+        renderHook.append(myEl);
+
         //print favorite movies
         for (const favorite in userListOne.list[user].matchedUsers[match].matches) {
-            renderHook.innerHTML += `
-            <h2>${movieListOne.list[userListOne.list[user].matchedUsers[match].matches[favorite]].title}</h2>
-            `;
+            myEl = document.createElement("h2");
+            myEl.textContent = movieListOne.list[userListOne.list[user].matchedUsers[match].matches[favorite]].title;
+            renderHook.append(myEl);
         }
 
-        renderHook.innerHTML += `
-        <hr>
-        <button>Chat</button>
-        <button>Watch Movie</button>
-        <button class="back">Back</button>
-        `;
+        myEl = document.createElement("hr");
+        renderHook.append(myEl);
+
+        myEl = document.createElement("button");
+        myEl.textContent = "Chat";
+        renderHook.append(myEl);
+
+        myEl = document.createElement("button");
+        myEl.textContent = "Watch Movie";
+        renderHook.append(myEl);
+
+        myEl = document.createElement("button");
+        myEl.classList.add("back");
+        myEl.textContent = "Back";
+        renderHook.append(myEl);
 
         renderHook.querySelectorAll('button')[0].addEventListener('click', () => alert('chat under construction'));
         renderHook.querySelectorAll('button')[1].addEventListener('click', () => alert('watch movie under construction'));
@@ -165,20 +232,35 @@ class UserMovieListAddPage {
     render(user) {
         const movieOptionsId = [];
         const toAddId = [];
-        renderHook.innerHTML = '';
-        renderHook.innerHTML += '<h1 class="title">SELECT YOUR FAVORITES</h1>'
+
+        renderHook.textContent = '';
+
+        var myEl = document.createElement("h1");
+        myEl.classList.add("title");
+        myEl.textContent = "SELECT YOUR FAVORITES";
+        renderHook.append(myEl);
+
         for (const movie in movieListOne.list) {
             if (userListOne.list[user].favoriteMovies.includes(movieListOne.list[movie].id)) {
                 //movie is already in user list
             } else {
-                renderHook.innerHTML +=`
-                <h2>${movieListOne.list[movie].title}</h2>
-                `;
+                myEl = document.createElement("h2");
+                myEl.textContent = movieListOne.list[movie].title;
+                renderHook.append(myEl);
+    
                 movieOptionsId.push(movieListOne.list[movie].id);
             }
         }
-        renderHook.innerHTML += '<button>Add</button>'
-        renderHook.innerHTML += '<button class="back">Cancel</button>'
+
+        myEl = document.createElement("button");
+        myEl.textContent = "Add";
+        renderHook.append(myEl);
+
+        myEl = document.createElement("button");
+        myEl.classList.add("back");
+        myEl.textContent = "Cancel";
+        renderHook.append(myEl);
+        
         //add event listeners
         for (const movie in movieOptionsId) {
             renderHook.querySelectorAll('h2')[movie].addEventListener('click', () => 
@@ -206,16 +288,31 @@ class UserMovieListRemovePage {
     render(user) {
         const movieOptionsId = [];
         const toRemoveId = [];
-        renderHook.innerHTML = '';
-        renderHook.innerHTML += '<h1 class="title">SELECT TO REMOVE</h1>'
+
+        renderHook.textContent = '';
+
+        var myEl = document.createElement("h1");
+        myEl.classList.add("title");
+        myEl.textContent = "SELECT TO REMOVE";
+        renderHook.append(myEl);
+        
         for (const movie in userListOne.list[user].favoriteMovies) {
-            renderHook.innerHTML +=`
-            <h2>${movieListOne.list[userListOne.list[user].favoriteMovies[movie]].title}</h2>
-            `;
+            myEl = document.createElement("h2");
+            myEl.textContent = movieListOne.list[userListOne.list[user].favoriteMovies[movie]].title;
+            renderHook.append(myEl);
+
             movieOptionsId.push(userListOne.list[user].favoriteMovies[movie]);
         }
-        renderHook.innerHTML += '<button>Remove</button>'
-        renderHook.innerHTML += '<button class="back">Cancel</button>'
+
+        myEl = document.createElement("button");
+        myEl.textContent = "Remove";
+        renderHook.append(myEl);
+
+        myEl = document.createElement("button");
+        myEl.classList.add("back");
+        myEl.textContent = "Cancel";
+        renderHook.append(myEl);
+
         //add event listeners
         for (const movie in movieOptionsId) {
             renderHook.querySelectorAll('h2')[movie].addEventListener('click', () => 
