@@ -82,12 +82,51 @@ hr {
     width: 12em;
 }
 
+img {
+    /*to center*/
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /*--------*/
+    animation: fadeInAnimation ease-in 1s;
+}
+
 input {
     display: block;
     line-height: 2em;
     margin: 4em auto; /*A to center*/
     text-align: center;
 }
+
+.fadein1 {
+    animation: fadeInAnimation1 ease-in 1s;
+}
+
+.fadein2 {
+    animation: fadeInAnimation2 ease-in 2s;
+}
+
+
+@keyframes fadeInAnimation1 { 
+    0% { 
+        opacity: 0; 
+    } 
+    100% { 
+        opacity: 1; 
+     } 
+} 
+
+@keyframes fadeInAnimation2 { 
+    0% { 
+        opacity: 0; 
+    } 
+    50% { 
+        opacity: 0; 
+    } 
+    100% { 
+        opacity: 1; 
+     } 
+} 
 
 @media (max-width: 576px) {
     body {
